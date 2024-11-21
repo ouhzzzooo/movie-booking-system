@@ -23,7 +23,7 @@ const MovieDropdown: React.FC<MovieDropdownProps> = ({ onSelect }) => {
   }, []);
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-lg">
+    <div className="p-4 bg-white rounded-lg shadow-lg transform transition-all duration-300 animate-fadeIn">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {movies.map((movie) => (
           <Link
@@ -36,11 +36,13 @@ const MovieDropdown: React.FC<MovieDropdownProps> = ({ onSelect }) => {
               <img
                 src={movie.image}
                 alt={movie.name}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
             <div>
-              <h3 className="font-bold text-gray-900">{movie.name}</h3>
+              <h3 className="font-bold text-sky-700 group-hover:text-sky-500 transition-colors duration-200">
+                {movie.name}
+              </h3>
             </div>
           </Link>
         ))}

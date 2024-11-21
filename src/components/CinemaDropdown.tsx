@@ -35,15 +35,15 @@ const CinemaDropdown: React.FC<CinemaDropdownProps> = ({ onSelect }) => {
   }, [searchQuery, cinemas]);
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-lg">
+    <div className="p-4 bg-white rounded-lg shadow-lg transform transition-all duration-300 animate-fadeIn">
       <div className="relative mb-6">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sky-400 w-5 h-5" />
         <input
           type="text"
           placeholder="Find - Locations or Cinema"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+          className="w-full pl-10 pr-4 py-3 border border-sky-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/50 bg-sky-50/30 text-sky-700 placeholder-sky-400"
         />
       </div>
 
@@ -54,9 +54,9 @@ const CinemaDropdown: React.FC<CinemaDropdownProps> = ({ onSelect }) => {
             onClick={() => {
               onSelect?.();
             }}
-            className="hover:text-orange-500 cursor-pointer transition-colors"
+            className="cursor-pointer text-sky-700 hover:text-sky-500 transition-colors duration-200 hover:bg-sky-50 px-3 py-1.5 rounded-lg"
           >
-            {cinema.name} - {cinema.location}
+            <span className="font-semibold">{cinema.name}</span> - <span>{cinema.location}</span>
           </div>
         ))}
       </div>

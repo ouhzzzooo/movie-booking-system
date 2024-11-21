@@ -60,7 +60,7 @@ const SeatSelection: React.FC = () => {
   if (!movie) return <div>Loading...</div>;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex gap-8">
           <div className="flex-1">
@@ -71,18 +71,18 @@ const SeatSelection: React.FC = () => {
             />
           </div>
           <div className="w-80">
-            <div className="bg-white rounded-lg shadow-lg p-6">
+            <div className="bg-white rounded-lg shadow-soft p-6">
               <img
                 src={movie.image}
                 alt={movie.name}
                 className="w-full rounded-lg mb-4"
               />
-              <h2 className="text-xl font-bold mb-2">{movie.name}</h2>
-              <div className="space-y-2 text-sm text-gray-600 mb-4">
+              <h2 className="text-xl font-bold text-sky-800 mb-2">{movie.name}</h2>
+              <div className="space-y-2 text-sm text-sky-700 mb-4">
                 <p>Genre: {movie.genre}</p>
                 <p className="flex items-center">
                   Rate: {movie.rating}
-                  <Clock className="w-4 h-4 ml-2 mr-1" />
+                  <Clock className="w-4 h-4 ml-2 mr-1 text-sky-500" />
                   {movie.duration} Mins
                 </p>
               </div>
@@ -95,18 +95,16 @@ const SeatSelection: React.FC = () => {
                     return (
                       <div
                         key={seatId}
-                        className="flex justify-between text-orange-500"
+                        className="flex justify-between text-sky-500"
                       >
-                        <span>
-                          {seat?.seatNumber}
-                        </span>
+                        <span>{seat?.seatNumber}</span>
                         <span>{isPremium ? '500 THB' : '200 THB'}</span>
                       </div>
                     );
                   })}
                 </div>
                 <p className="font-semibold mt-4">Total</p>
-                <p className="text-orange-500 text-xl font-bold">
+                <p className="text-sky-500 text-xl font-bold">
                   {calculateTotal()} THB
                 </p>
               </div>
@@ -119,9 +117,11 @@ const SeatSelection: React.FC = () => {
                   )
                 }
                 disabled={selectedSeats.length === 0}
-                className="w-full bg-orange-500 text-white py-3 rounded-lg mt-6 font-semibold hover:bg-orange-600 transition-colors duration-200 disabled:bg-gray-300"
+                className="w-full relative group overflow-hidden px-4 py-3 rounded-lg font-semibold text-white shadow-lg shadow-sky-400/30 mt-6 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Continue
+                <div className="absolute inset-0 bg-gradient-to-r from-sky-400 to-sky-500 transition-transform duration-300 group-hover:scale-105"></div>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2),transparent 50%)]"></div>
+                <span className="relative">Continue</span>
               </button>
             </div>
           </div>

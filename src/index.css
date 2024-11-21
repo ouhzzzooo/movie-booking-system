@@ -11,3 +11,13 @@
     transform: rotateX(60deg);
   }
 }
+
+/* Modal styles */
+.modal-open {
+  overflow: hidden;
+}
+
+/* Add stacking context */
+#root {
+  isolation: isolate;
+}

@@ -62,16 +62,17 @@ const Payment: React.FC = () => {
 
   const handlePayment = async () => {
     try {
-      await createBooking({
-        showtimeId: Number(showtimeId),
-        seatIds,
-        paymentMethod: selectedMethod,
-        totalAmount: Number(totalAmount),
-        email,
-        mobile,
-      },
-      token
-    );
+      await createBooking(
+        {
+          showtimeId: Number(showtimeId),
+          seatIds,
+          paymentMethod: selectedMethod,
+          totalAmount: Number(totalAmount),
+          email,
+          mobile,
+        },
+        token
+      );
       navigate('/booking-success');
     } catch (error) {
       console.error('Payment failed:', error);
@@ -81,13 +82,13 @@ const Payment: React.FC = () => {
   if (!movie) return <div>Loading...</div>;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white py-8">
       <div className="max-w-3xl mx-auto px-4">
-        <h1 className="text-2xl font-bold text-center mb-8 text-orange-500">
+        <h1 className="text-2xl font-bold text-center mb-8 bg-gradient-to-r from-sky-600 to-sky-400 bg-clip-text text-transparent">
           Payment
         </h1>
 
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <div className="bg-white rounded-lg shadow-soft p-6 mb-8">
           <div className="flex gap-6">
             <img
               src={movie.image}
@@ -95,16 +96,16 @@ const Payment: React.FC = () => {
               className="w-32 rounded-lg"
             />
             <div>
-              <h2 className="text-xl font-bold mb-2">{movie.name}</h2>
-              <div className="space-y-1 text-sm text-gray-600">
+              <h2 className="text-xl font-bold text-sky-800 mb-2">{movie.name}</h2>
+              <div className="space-y-1 text-sky-600">
                 <p>Genre: {movie.genre}</p>
                 <p className="flex items-center">
                   Rate: {movie.rating}
-                  <Clock className="w-4 h-4 ml-2 mr-1" />
+                  <Clock className="w-4 h-4 ml-2 mr-1 text-sky-500" />
                   {movie.duration} Mins
                 </p>
                 {/* Include showtime and seat details if available */}
-                <p className="text-orange-500">
+                <p className="text-sky-500">
                   Selected Seats:{' '}
                   {selectedSeatsData
                     .map((seat) => seat.seatNumber)
@@ -115,8 +116,8 @@ const Payment: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h3 className="text-lg font-semibold mb-6 text-orange-500 text-center">
+        <div className="bg-white rounded-lg shadow-soft p-6">
+          <h3 className="text-lg font-semibold text-sky-500 text-center mb-6">
             Confirmation
           </h3>
 
@@ -126,18 +127,18 @@ const Payment: React.FC = () => {
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-2 border border-sky-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/50 bg-sky-50/30 text-sky-700 placeholder-sky-400"
             />
             <input
               type="tel"
               placeholder="Mobile"
               value={mobile}
               onChange={(e) => setMobile(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-2 border border-sky-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/50 bg-sky-50/30 text-sky-700 placeholder-sky-400"
             />
           </div>
 
-          <h3 className="text-lg font-semibold mb-4 text-orange-500 text-center">
+          <h3 className="text-lg font-semibold text-sky-500 text-center mb-4">
             Selected Payment Method
           </h3>
           <div className="grid grid-cols-3 gap-4 mb-6">
@@ -145,12 +146,12 @@ const Payment: React.FC = () => {
               <button
                 key={id}
                 onClick={() => setSelectedMethod(id)}
-                className={`p-4 rounded-lg border text-center transition-colors duration-200 flex flex-col items-center gap-2
-                      ${
-                        selectedMethod === id
-                          ? 'border-orange-500 text-orange-500'
-                          : 'border-gray-200 text-gray-600 hover:border-orange-200'
-                      }`}
+                className={`p-4 rounded-lg border text-center transition-all duration-200 flex flex-col items-center gap-2
+                  ${
+                    selectedMethod === id
+                      ? 'border-sky-500 text-sky-500 bg-sky-50'
+                      : 'border-sky-200 text-sky-600 hover:border-sky-300 hover:bg-sky-50/50'
+                  }`}
               >
                 <Icon className="w-6 h-6" />
                 <span className="text-sm">{label}</span>
@@ -161,9 +162,11 @@ const Payment: React.FC = () => {
           <button
             disabled={!selectedMethod || !email || !mobile}
             onClick={handlePayment}
-            className="w-full bg-gradient-to-r from-orange-400 to-orange-500 text-white py-3 rounded-lg font-semibold hover:from-orange-500 hover:to-orange-600 transition-all duration-200 disabled:from-gray-300 disabled:to-gray-300"
+            className="w-full relative group overflow-hidden px-4 py-3 rounded-lg font-semibold text-white shadow-lg shadow-sky-400/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            PAY ({totalAmount} THB)
+            <div className="absolute inset-0 bg-gradient-to-r from-sky-400 to-sky-500 transition-transform duration-300 group-hover:scale-105"></div>
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_50%)]"></div>
+            <span className="relative">PAY ({totalAmount} THB)</span>
           </button>
         </div>
       </div>

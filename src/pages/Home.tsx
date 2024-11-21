@@ -26,15 +26,15 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white flex flex-col">
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-12" ref={dropdownRef}>
+        <div className="bg-white rounded-xl shadow-soft p-6 mb-12" ref={dropdownRef}>
           <div className="flex items-center gap-4">
             <div className="flex-1 relative">
               <button
                 onClick={() => setActiveDropdown(activeDropdown === 'cinema' ? null : 'cinema')}
                 className={`w-full px-4 py-2 text-left border-b transition-colors ${
-                  activeDropdown === 'cinema' ? 'border-orange-500 text-orange-500' : 'border-gray-200'
+                  activeDropdown === 'cinema' ? 'border-sky-500 text-sky-500' : 'border-sky-200'
                 }`}
               >
                 All Cinema
@@ -50,7 +50,7 @@ const Home: React.FC = () => {
               <button
                 onClick={() => setActiveDropdown(activeDropdown === 'movie' ? null : 'movie')}
                 className={`w-full px-4 py-2 text-left border-b transition-colors ${
-                  activeDropdown === 'movie' ? 'border-orange-500 text-orange-500' : 'border-gray-200'
+                  activeDropdown === 'movie' ? 'border-sky-500 text-sky-500' : 'border-sky-200'
                 }`}
               >
                 Movie
@@ -64,16 +64,25 @@ const Home: React.FC = () => {
 
             <Link
               to="/showtime"
-              className="px-8 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
+              className="px-8 py-2 bg-gradient-to-r from-sky-400 to-sky-500 text-white rounded-lg hover:from-sky-500 hover:to-sky-600 transition-colors shadow-button"
             >
               SHOWTIME
             </Link>
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold text-orange-500 text-center mb-8">Movie</h2>
-        <MovieList movies={movies} />
+        <div className="relative">
+          <h2 className="text-2xl font-bold text-sky-500 text-center mb-8">Movie</h2>
+          <MovieList movies={movies} />
+        </div>
       </div>
+
+      <footer className="mt-auto py-6 bg-gradient-to-r from-sky-50 to-white">
+        <div className="text-center text-sky-600/70">
+          <p className="font-medium">© 2024 FS Cinema. All rights reserved.</p>
+          <p className="text-sm mt-1">Developed by Pongsakorn</p>
+        </div>
+      </footer>
     </div>
   );
 };

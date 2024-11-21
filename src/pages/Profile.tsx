@@ -6,7 +6,7 @@ const Profile: React.FC = () => {
   const [formData, setFormData] = useState({
     name: user?.name || '',
     surname: user?.surname || '',
-    phoneNumber: user?.phoneNumber || ''
+    phoneNumber: user?.phoneNumber || '',
   });
   const [isEditing, setIsEditing] = useState(false);
   const [message, setMessage] = useState('');
@@ -22,31 +22,35 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-2xl mx-auto px-4">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Profile</h1>
+    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white flex flex-col">
+      <div className="max-w-3xl mx-auto px-4 py-8 flex-grow">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-400 bg-clip-text text-transparent mb-8">
+          Profile
+        </h1>
 
         {message && (
-          <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg">
+          <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg animate-fadeIn">
             {message}
           </div>
         )}
 
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white rounded-lg shadow-soft p-6">
           <div className="flex justify-between items-center mb-6">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-orange-500 text-white flex items-center justify-center text-2xl">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-sky-400 to-sky-500 text-white flex items-center justify-center text-2xl shadow-soft">
                 {user.name[0].toUpperCase()}
               </div>
               <div>
-                <h2 className="text-xl font-bold">{`${user.name} ${user.surname}`}</h2>
-                <p className="text-gray-500">{user.email}</p>
+                <h2 className="text-xl font-bold text-sky-800">
+                  {`${user.name} ${user.surname}`}
+                </h2>
+                <p className="text-sky-600">{user.email}</p>
               </div>
             </div>
             {!isEditing && (
               <button
                 onClick={() => setIsEditing(true)}
-                className="px-4 py-2 text-orange-500 border border-orange-500 rounded-lg hover:bg-orange-50 transition-colors"
+                className="px-4 py-2 text-sky-500 border border-sky-500 rounded-lg hover:bg-sky-50 transition-colors"
               >
                 Edit Profile
               </button>
@@ -54,42 +58,48 @@ const Profile: React.FC = () => {
           </div>
 
           {isEditing ? (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-sky-700 mb-1">
                   Name
                 </label>
                 <input
                   type="text"
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                  className="w-full px-4 py-2 border border-sky-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 bg-sky-50 text-sky-700"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-sky-700 mb-1">
                   Surname
                 </label>
                 <input
                   type="text"
                   value={formData.surname}
-                  onChange={(e) => setFormData({ ...formData, surname: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  onChange={(e) =>
+                    setFormData({ ...formData, surname: e.target.value })
+                  }
+                  className="w-full px-4 py-2 border border-sky-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 bg-sky-50 text-sky-700"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-sky-700 mb-1">
                   Phone Number
                 </label>
                 <input
                   type="tel"
                   value={formData.phoneNumber}
-                  onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  onChange={(e) =>
+                    setFormData({ ...formData, phoneNumber: e.target.value })
+                  }
+                  className="w-full px-4 py-2 border border-sky-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 bg-sky-50 text-sky-700"
                   required
                 />
               </div>
@@ -104,7 +114,7 @@ const Profile: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
+                  className="px-4 py-2 bg-gradient-to-r from-sky-400 to-sky-500 text-white rounded-lg hover:from-sky-500 hover:to-sky-600 transition-colors"
                 >
                   Save Changes
                 </button>
@@ -113,16 +123,22 @@ const Profile: React.FC = () => {
           ) : (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-500">Name</label>
-                <p className="mt-1">{user.name}</p>
+                <label className="block text-sm font-medium text-sky-500">
+                  Name
+                </label>
+                <p className="mt-1 text-sky-700">{user.name}</p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-500">Surname</label>
-                <p className="mt-1">{user.surname}</p>
+                <label className="block text-sm font-medium text-sky-500">
+                  Surname
+                </label>
+                <p className="mt-1 text-sky-700">{user.surname}</p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-500">Phone Number</label>
-                <p className="mt-1">{user.phoneNumber}</p>
+                <label className="block text-sm font-medium text-sky-500">
+                  Phone Number
+                </label>
+                <p className="mt-1 text-sky-700">{user.phoneNumber}</p>
               </div>
             </div>
           )}
